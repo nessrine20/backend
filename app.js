@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const http=require('http')
+require('dotenv').config()
 //importation des biblio
 
 var indexRouter = require('./routes/index');
@@ -49,7 +50,7 @@ app.use(function(err, req, res, next) {
 //sna3et el serveur
 const server = http.createServer(app)
 //bech nlansi el serveur
-server.listen(5000,()=>{
+server.listen(process.env.port,()=>{
   console.log("app is running on port 5000")
 })
 
