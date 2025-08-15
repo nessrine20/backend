@@ -3,9 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const http=require('http')
-require('dotenv').config()
 //importation des biblio
+const http=require('http')
+//config http
+require('dotenv').config()
+const {conneccttoMongoDB} = require("./config/db")
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -51,6 +54,7 @@ app.use(function(err, req, res, next) {
 const server = http.createServer(app)
 //bech nlansi el serveur
 server.listen(process.env.port,()=>{
+    conneccttoMongoDB()
   console.log("app is running on port 5000")
 })
 
