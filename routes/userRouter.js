@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const userController = require('../controllers/userController')
-const uploadfile = require('../middlewares/uploadFile')
+const uploadfile = require('../middelwares/uploadFile');
 /* GET home page. */
 router.get('/getAllUsers',userController.getAllUsers )
 router.get('/getOrderUsersByAge',userController.getOrderUsersByAge )

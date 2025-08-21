@@ -87,7 +87,7 @@ module.exports.getUserById = async (req, res) => {
 module.exports.addClient = async (req, res) => {
   try {
     //logique
-    const {username , email, password , age}=req.body
+    const {username , email, password ,age}=req.body
     console.log("req.body",req.body)
     const role = 'client'
     const client = new userModel({username , email, password , age,role})
