@@ -12,6 +12,7 @@ const {connecttoMongoDB} = require("./config/db")
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/userRouter');
 var osRouter = require('./routes/osRouter');
+var formationsRouter = require('./routes/formationRouter');
 
 var app = express();
 
