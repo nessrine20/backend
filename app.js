@@ -3,24 +3,21 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-//importation des biblio
-const http=require('http')
-//config http
+
+const http = require('http')
 require('dotenv').config()
-const {conneccttoMongoDB} = require("./config/db")
+const {connecttoMongoDB} = require("./config/db")
 
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-//imprtation de routage
+var usersRouter = require('./routes/userRouter');
+var osRouter = require('./routes/osRouter');
+
 var app = express();
-//creation de projet
 
-
-
-//// view engine setup
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
+// // view engine setup
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -30,13 +27,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-//malahou w ma3alayh
+app.use('/os', osRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-//erreur cote client
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -46,15 +42,11 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json('error');
 });
 
-//erreur cote serveur
-//sna3et el serveur
 const server = http.createServer(app)
-//bech nlansi el serveur
 server.listen(process.env.port,()=>{
-    conneccttoMongoDB()
-  console.log("app is running on port 5000")
+  connecttoMongoDB()
+  console.log("app is runing on port 5000")
 })
-
